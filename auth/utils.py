@@ -113,7 +113,7 @@ def extract_refresh_token(refresh_token):
         return redirect(url_for('user_logout'))
 
 
-def extract_access_payload(token):
+def extract_access_token_payload(token):
     refresh_response = {}
     is_refresh_expired = False
     if token[:2] == "b'" and token[-1] == "'":

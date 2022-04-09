@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.pool import NullPool
 import os
 
-db_uri = os.getenv('DB_URI_EIENDOM')
+db_uri = os.getenv('DB_URI')
 db_engine = create_engine(db_uri, poolclass=NullPool)
 
 base_connection = automap_base()

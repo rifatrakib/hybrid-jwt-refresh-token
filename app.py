@@ -50,8 +50,14 @@ def user_login():
                 'access_token': str(token),
                 'user_id': session['user_id'],
             }
-            token_stats = store_token_in_database(store_data_tokens)
-            response.set_cookie('auth_token', str(token), max_age=int(refresh_token_life))
+            token_recorded = store_token_in_database(store_data_tokens)
+            if token_recorded['success']:
+                response.set_cookie('auth_token', str(token), max_age=int(refresh_token_life))
+            else:
+                response['error'] = 'Server facing problem right now. Try again later'
+                response['success'] = False
+                user = None
+            
             return response
     
     except Exception as e:
